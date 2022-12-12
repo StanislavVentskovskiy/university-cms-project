@@ -12,6 +12,10 @@ public class RoomDaoImpl implements RoomDao {
     @Autowired
     RoomRepository roomRepository;
 
+    public Room getRoom(int roomId){
+        return roomRepository.findById(roomId).orElse(null);
+    }
+
     public Room addRoom(Room room){
         roomRepository.save(room);
 

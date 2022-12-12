@@ -32,12 +32,12 @@ public class LessonDaoImplTest {
         expectedLesson.setRoomId(1);
         expectedLesson.setTeacherId(1);
         expectedLesson.setSubjectId(1);
-        lessonDaoImpl.addLesson(expectedLesson);
+
     }
 
     @Test
     public void addLessonTest_shouldReturnLesson(){
-        actualLesson = lessonDaoImpl.getLesson(expectedLesson.getId());
+        actualLesson = lessonDaoImpl.addLesson(expectedLesson);
 
         assertEquals(expectedLesson,actualLesson);
     }

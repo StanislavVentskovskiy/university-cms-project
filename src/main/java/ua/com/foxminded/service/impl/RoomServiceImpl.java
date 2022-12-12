@@ -10,6 +10,10 @@ public class RoomServiceImpl implements RoomService {
     @Autowired
     RoomDaoImpl roomDaoImpl;
 
+    public Room getRoom(int roomId){
+        return roomDaoImpl.getRoom(roomId);
+    }
+
     public Room addRoom(Room room){
         return roomDaoImpl.addRoom(room);
     }
