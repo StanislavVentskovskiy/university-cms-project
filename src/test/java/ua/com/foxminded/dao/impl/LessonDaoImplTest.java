@@ -8,7 +8,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
 import ua.com.foxminded.model.Lesson;
+import java.time.LocalDate;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringRunner.class)
 @Sql(scripts = {"classpath:test-schema.sql","classpath:test-data.sql"})
@@ -20,6 +22,8 @@ public class LessonDaoImplTest {
 
     private Lesson expectedLesson;
     private Lesson actualLesson;
+    private int testLessonId = 1;
+    private LocalDate testLocalDate = LocalDate.of(2022,10,10);
 
     @Before
     public void initTestData(){
@@ -36,5 +40,27 @@ public class LessonDaoImplTest {
         actualLesson = lessonDaoImpl.getLesson(expectedLesson.getId());
 
         assertEquals(expectedLesson,actualLesson);
+    }
+
+    @Test
+    public void getLessonTest_shouldReturnLesson(){
+        actualLesson = lessonDaoImpl.getLesson(1);
+
+        assertTrue(actualLesson instanceof Lesson);
+    }
+
+    @Test
+    public void deleteLessonTest_shouldReturnNull(){
+        lessonDaoImpl.deleteLesson(testLessonId);
+
+        assertTrue(lessonDaoImpl.getLesson(1) == null);
+    }
+
+    @Test
+    public void updateLessonTest_shouldReturnLesson(){
+        expectedLesson.setDate(testLocalDate);
+        actualLesson = lessonDaoImpl.updateLesson(expectedLesson);
+
+        assertTrue(expectedLesson.equals(actualLesson));
     }
 }
