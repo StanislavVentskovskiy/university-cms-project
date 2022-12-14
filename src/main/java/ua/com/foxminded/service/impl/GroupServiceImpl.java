@@ -1,10 +1,12 @@
 package ua.com.foxminded.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import ua.com.foxminded.dao.impl.GroupDaoImpl;
 import ua.com.foxminded.model.Group;
 import ua.com.foxminded.service.GroupService;
 
+@Service
 public class GroupServiceImpl implements GroupService {
 
     @Autowired
