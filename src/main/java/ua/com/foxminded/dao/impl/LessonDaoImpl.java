@@ -26,8 +26,8 @@ public class LessonDaoImpl implements LessonDao {
         Lesson other = lessonRepository.findById(lesson.getId()).orElse(null);
         if(other != null){
             other.setDate(lesson.getDate());
-            other.setEndTime(lesson.getEndTime());
-            other.setStartTime(lesson.getStartTime());
+            other.setEndTime(other.getEndTime());
+            other.setStartTime(other.getStartTime());
             other.setDate(lesson.getDate());
             other.setGroupId(lesson.getGroupId());
             other.setRoomId(lesson.getRoomId());

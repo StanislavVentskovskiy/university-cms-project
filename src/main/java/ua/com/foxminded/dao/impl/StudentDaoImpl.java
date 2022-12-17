@@ -1,20 +1,14 @@
 package ua.com.foxminded.dao.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import ua.com.foxminded.dao.StudentDao;
 import ua.com.foxminded.dao.repository.StudentRepository;
 import ua.com.foxminded.model.Student;
 
-@Repository
 public class StudentDaoImpl implements StudentDao {
 
     @Autowired
     StudentRepository studentRepository;
-
-    public Student getStudent(int studentId){
-        return studentRepository.findById(studentId).orElse(null);
-    }
 
     public Student addStudent(Student student){
         studentRepository.save(student);

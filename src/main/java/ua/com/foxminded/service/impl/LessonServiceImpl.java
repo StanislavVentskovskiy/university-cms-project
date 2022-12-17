@@ -1,12 +1,10 @@
 package ua.com.foxminded.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import ua.com.foxminded.dao.impl.LessonDaoImpl;
 import ua.com.foxminded.model.Lesson;
 import ua.com.foxminded.service.LessonService;
 
-@Service
 public class LessonServiceImpl implements LessonService {
 
     @Autowired

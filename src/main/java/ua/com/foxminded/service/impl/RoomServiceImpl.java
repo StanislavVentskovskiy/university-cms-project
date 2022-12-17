@@ -1,12 +1,10 @@
 package ua.com.foxminded.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import ua.com.foxminded.dao.impl.RoomDaoImpl;
 import ua.com.foxminded.model.Room;
 import ua.com.foxminded.service.RoomService;
 
-@Service
 public class RoomServiceImpl implements RoomService {
 
     @Autowired

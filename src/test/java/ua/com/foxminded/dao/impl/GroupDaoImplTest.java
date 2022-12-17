@@ -37,6 +37,8 @@ public class GroupDaoImplTest {
         assertEquals(expectedGroup,actualGroup);
     }
 
+
+
     @Test
     public void testUpdateGroup_shouldReturnGroup(){
         secondExpectedGroup.setName("test2");

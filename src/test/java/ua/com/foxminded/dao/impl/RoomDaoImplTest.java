@@ -7,12 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
+import ua.com.foxminded.model.Lesson;
 import ua.com.foxminded.model.Room;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;
 
+
 @RunWith(SpringRunner.class)
-@Sql(scripts = {"classpath:test-schema.sql"})
+@Sql(scripts = {"classpath:test-schema.sql", "classpath:test-data.sql"})
 @SpringBootTest
 public class RoomDaoImplTest {
 

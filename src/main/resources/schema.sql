@@ -10,7 +10,7 @@ DROP TABLE IF EXISTS university.rooms
     CASCADE;
 DROP TABLE IF EXISTS university.students
     CASCADE;
-DROP TABLE IF EXISTS university.subjects
+DROP TABLE IF EXISTS university.subject
     CASCADE;
 DROP TABLE IF EXISTS university.teachers
     CASCADE;
@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS university.rooms
     floor integer NOT NULL,
     "number" integer NOT NULL,
     CONSTRAINT rooms_pkey PRIMARY KEY (id)
-)
+    )
 
     TABLESPACE pg_default;
 
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS university.groups
     id BIGSERIAL NOT NULL,
     name character varying COLLATE pg_catalog."default",
     CONSTRAINT groups_pkey PRIMARY KEY (id)
-)
+    )
 
     TABLESPACE pg_default;
 
@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS university.subjects
     id BIGSERIAL NOT NULL,
     name character varying(255) COLLATE pg_catalog."default",
     CONSTRAINT subjects_pkey PRIMARY KEY (id)
-)
+    )
 
     TABLESPACE pg_default;
 
@@ -57,15 +57,15 @@ CREATE TABLE IF NOT EXISTS university.teachers
     id BIGSERIAL NOT NULL,
     name character varying(255) COLLATE pg_catalog."default",
     email character varying(255) COLLATE pg_catalog."default",
-    birthday date,
+    birthday time without time zone,
     subject_id integer NOT NULL,
     "position" character varying COLLATE pg_catalog."default",
     CONSTRAINT teachers_pkey PRIMARY KEY (id),
     CONSTRAINT teachers_subject_fkey FOREIGN KEY (subject_id)
-        REFERENCES university.subjects (id) MATCH SIMPLE
-        ON UPDATE NO ACTION
-        ON DELETE CASCADE
-)
+    REFERENCES university.subjects (id) MATCH SIMPLE
+                  ON UPDATE NO ACTION
+                  ON DELETE NO ACTION
+    )
 
     TABLESPACE pg_default;
 
@@ -82,10 +82,10 @@ CREATE TABLE IF NOT EXISTS university.students
     birthday timestamp without time zone,
     CONSTRAINT students_pkey PRIMARY KEY (id),
     CONSTRAINT students FOREIGN KEY (group_id)
-        REFERENCES university.groups (id) MATCH SIMPLE
-        ON UPDATE NO ACTION
-        ON DELETE NO ACTION
-)
+    REFERENCES university.groups (id) MATCH SIMPLE
+                       ON UPDATE NO ACTION
+                       ON DELETE NO ACTION
+    )
 
     TABLESPACE pg_default;
 
@@ -99,14 +99,14 @@ CREATE TABLE IF NOT EXISTS university.groupsstudents
     group_id integer,
     CONSTRAINT groupsstudents_pkey PRIMARY KEY (id),
     CONSTRAINT groups FOREIGN KEY (group_id)
-        REFERENCES university.groups (id) MATCH SIMPLE
-        ON UPDATE NO ACTION
-        ON DELETE NO ACTION,
+    REFERENCES university.groups (id) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION,
     CONSTRAINT students FOREIGN KEY (student_id)
-        REFERENCES university.students (id) MATCH SIMPLE
-        ON UPDATE NO ACTION
-        ON DELETE NO ACTION
-)
+    REFERENCES university.students (id) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION
+    )
 
     TABLESPACE pg_default;
 
@@ -115,32 +115,32 @@ ALTER TABLE IF EXISTS university.groupsstudents
 
 CREATE TABLE IF NOT EXISTS university.lessons
 (
-    id BIGSERIAL NOT NULL,
+    id integer NOT NULL,
     room_id integer NOT NULL,
     group_id integer NOT NULL,
     teacher_id integer NOT NULL,
     subject_id integer NOT NULL,
-    start_time time without time zone,
-    end_time time without time zone,
+    "startTime" time without time zone,
+    "endTime" time without time zone,
     date date,
     CONSTRAINT lessons_pkey PRIMARY KEY (id),
     CONSTRAINT groups FOREIGN KEY (group_id)
-        REFERENCES university.groups (id) MATCH SIMPLE
-        ON UPDATE NO ACTION
-        ON DELETE CASCADE ,
+    REFERENCES university.groups (id) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION,
     CONSTRAINT rooms FOREIGN KEY (room_id)
-        REFERENCES university.rooms (id) MATCH SIMPLE
-        ON UPDATE NO ACTION
-        ON DELETE CASCADE ,
+    REFERENCES university.rooms (id) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION,
     CONSTRAINT subjects FOREIGN KEY (subject_id)
-        REFERENCES university.subjects (id) MATCH SIMPLE
-        ON UPDATE NO ACTION
-        ON DELETE CASCADE ,
+    REFERENCES university.subjects (id) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION,
     CONSTRAINT teachers FOREIGN KEY (teacher_id)
-        REFERENCES university.teachers (id) MATCH SIMPLE
-        ON UPDATE NO ACTION
-        ON DELETE CASCADE
-)
+    REFERENCES university.teachers (id) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION
+    )
 
     TABLESPACE pg_default;
 
