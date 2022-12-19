@@ -1,5 +1,5 @@
-  flyway:
-    url: jdbc:postgresql://localhost:5432/postgres
-    schemas: university
-    user: postgres
-    password: password
+flyway:
+  url: jdbc:postgresql://localhost:5432/postgres
+  schemas: university
+  user: postgres
+  password: password

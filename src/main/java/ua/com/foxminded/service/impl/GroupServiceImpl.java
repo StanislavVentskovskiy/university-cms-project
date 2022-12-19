@@ -1,10 +1,14 @@
 package ua.com.foxminded.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import ua.com.foxminded.dao.impl.GroupDaoImpl;
 import ua.com.foxminded.model.Group;
 import ua.com.foxminded.service.GroupService;
 
+import java.util.Optional;
+
+@Service
 public class GroupServiceImpl implements GroupService {
 
     @Autowired
@@ -14,7 +18,7 @@ public class GroupServiceImpl implements GroupService {
         return groupDaoImpl.addGroup(group);
     }
 
-    public Group updateGroup(Group group){
+    public Optional<Group> updateGroup(Group group){
         return groupDaoImpl.updateGroup(group);
     }
 
@@ -22,7 +26,7 @@ public class GroupServiceImpl implements GroupService {
         groupDaoImpl.deleteGroup(groupId);
     }
 
-    public Group getGroup(int groupId){
+    public Optional<Group> getGroup(int groupId){
         return groupDaoImpl.getGroup(groupId);
     }
 }

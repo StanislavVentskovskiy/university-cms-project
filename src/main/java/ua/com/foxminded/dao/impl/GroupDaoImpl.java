@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ua.com.foxminded.dao.GroupDao;
 import ua.com.foxminded.dao.repository.GroupRepository;
 import ua.com.foxminded.model.Group;
+import java.util.Optional;
 
 @Repository
 @Transactional
@@ -18,18 +19,21 @@ public class GroupDaoImpl implements GroupDao {
         return groupRepository.save(group);
     }
 
-    public Group getGroup(int groupId){
-        return groupRepository.findById(groupId).orElse(null);
+    public Optional<Group> getGroup(int groupId){
+        return groupRepository.findById(groupId);
     }
 
-    public Group updateGroup(Group group){
-        Group other = groupRepository.findById(group.getId()).orElse(null);
-        if(other != null) {
-            other.setName(group.getName());
-            return groupRepository.save(other);
-        }
+    public Optional<Group> updateGroup(Group group){
+    //    Group other = groupRepository.findById(group.getId()).orElse(null);
+    //    if(other != null) {
+    //        other.setName(group.getName());
+    //        return groupRepository.save(other);
+    //    }
 
-        return null;
+    //    return null;
+        Group other = groupRepository.findById(group.getId()).orElse(null);
+        other.setName(group.getName());
+        return groupRepository.save(other);
     }
 
     public void deleteGroup(int groupId){
