@@ -1,14 +1,15 @@
 package ua.com.foxminded.dao;
 
 import ua.com.foxminded.model.Room;
+import java.util.Optional;
 
 public interface RoomDao {
 
-    Room getRoom(int roomId);
+    Optional<Room> getRoom(int roomId);
 
     Room addRoom(Room room);
 
-    Room updateRoom(Room room);
+    Optional<Room> updateRoom(Room room);
 
     void deleteRoom(int roomId);
 }

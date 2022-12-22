@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 import ua.com.foxminded.dao.SubjectDao;
 import ua.com.foxminded.dao.repository.SubjectRepository;
 import ua.com.foxminded.model.Subject;
+import java.util.Optional;
 
 @Repository
 public class SubjectDaoImpl implements SubjectDao {
@@ -12,8 +13,8 @@ public class SubjectDaoImpl implements SubjectDao {
     @Autowired
     SubjectRepository subjectRepository;
 
-    public Subject getSubject(int subjectId){
-        return subjectRepository.findById(subjectId).orElse(null);
+    public Optional<Subject> getSubject(int subjectId){
+        return subjectRepository.findById(subjectId);
     }
 
     public Subject addSubject(Subject subject){
@@ -22,14 +23,14 @@ public class SubjectDaoImpl implements SubjectDao {
         return subject;
     }
 
-    public Subject updateSubject(Subject subject){
-        Subject other = subjectRepository.findById(subject.getId()).orElse(null);
-        if (other != null){
-            other.setName(subject.getName());
-            subjectRepository.save(other);
+    public Optional<Subject> updateSubject(Subject subject){
+        Optional<Subject> other = subjectRepository.findById(subject.getId());
+        if (other.isPresent()){
+            other.get().setName(subject.getName());
+            subjectRepository.save(other.get());
         }
 
-        return subject;
+        return other;
     }
 
     public void deleteSubject(int subjectId){

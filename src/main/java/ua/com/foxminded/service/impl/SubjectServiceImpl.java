@@ -6,13 +6,15 @@ import ua.com.foxminded.dao.impl.SubjectDaoImpl;
 import ua.com.foxminded.model.Subject;
 import ua.com.foxminded.service.SubjectService;
 
+import java.util.Optional;
+
 @Service
 public class SubjectServiceImpl implements SubjectService {
 
     @Autowired
     SubjectDaoImpl subjectDaoImpl;
 
-    public Subject getSubject(int subjectId){
+    public Optional<Subject> getSubject(int subjectId){
         return subjectDaoImpl.getSubject(subjectId);
     }
 
@@ -20,7 +22,7 @@ public class SubjectServiceImpl implements SubjectService {
         return subjectDaoImpl.addSubject(subject);
     }
 
-    public Subject updateSubject(Subject subject){
+    public Optional<Subject> updateSubject(Subject subject){
         return subjectDaoImpl.updateSubject(subject);
     }
 

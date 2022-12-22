@@ -27,29 +27,24 @@ public class TeacherServiceImplTest {
     @Test
     public void getTeacherTest_shouldCallDaoMethod(){
         teacherService.getTeacher(testTeacherId);
-
         verify(teacherDao, Mockito.times(1)).getTeacher(Mockito.anyInt());
     }
 
     @Test
     public void addTeacherTest_shouldCallDaoMethod(){
         teacherService.addTeacher(testTeacher);
-
         verify(teacherDao, Mockito.times(1)).addTeacher(Mockito.any());
     }
 
     @Test
     public void updateTeacherTest_shouldCallDaoMethod(){
         teacherService.updateTeacher(testTeacher);
-
         verify(teacherDao, Mockito.times(1)).updateTeacher(Mockito.any());
     }
 
     @Test
     public void deleteTeacherTest_shouldCallDaoMethod(){
         teacherService.deleteTeacher(testTeacherId);
-
         verify(teacherDao, Mockito.times(1)).deleteTeacher(Mockito.anyInt());
     }
-
 }

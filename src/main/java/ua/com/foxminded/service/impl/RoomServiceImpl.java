@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import ua.com.foxminded.dao.impl.RoomDaoImpl;
 import ua.com.foxminded.model.Room;
 import ua.com.foxminded.service.RoomService;
+import java.util.Optional;
 
 @Service
 public class RoomServiceImpl implements RoomService {
@@ -12,7 +13,7 @@ public class RoomServiceImpl implements RoomService {
     @Autowired
     RoomDaoImpl roomDaoImpl;
 
-    public Room getRoom(int roomId){
+    public Optional<Room> getRoom(int roomId){
         return roomDaoImpl.getRoom(roomId);
     }
 
@@ -20,7 +21,7 @@ public class RoomServiceImpl implements RoomService {
         return roomDaoImpl.addRoom(room);
     }
 
-    public Room updateRoom(Room room){
+    public Optional<Room> updateRoom(Room room){
         return roomDaoImpl.updateRoom(room);
     }
 

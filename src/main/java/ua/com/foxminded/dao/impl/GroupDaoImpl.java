@@ -24,16 +24,13 @@ public class GroupDaoImpl implements GroupDao {
     }
 
     public Optional<Group> updateGroup(Group group){
-    //    Group other = groupRepository.findById(group.getId()).orElse(null);
-    //    if(other != null) {
-    //        other.setName(group.getName());
-    //        return groupRepository.save(other);
-    //    }
+        Optional<Group> other = groupRepository.findById(group.getId());
+        if (other.isPresent()) {
+            other.get().setName(group.getName());
+            groupRepository.save(other.get());
+        }
 
-    //    return null;
-        Group other = groupRepository.findById(group.getId()).orElse(null);
-        other.setName(group.getName());
-        return groupRepository.save(other);
+      return other;
     }
 
     public void deleteGroup(int groupId){

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 import ua.com.foxminded.dao.RoomDao;
 import ua.com.foxminded.dao.repository.RoomRepository;
 import ua.com.foxminded.model.Room;
+import java.util.Optional;
 
 @Repository
 public class RoomDaoImpl implements RoomDao {
@@ -12,8 +13,8 @@ public class RoomDaoImpl implements RoomDao {
     @Autowired
     RoomRepository roomRepository;
 
-    public Room getRoom(int roomId){
-        return roomRepository.findById(roomId).orElse(null);
+    public Optional<Room> getRoom(int roomId){
+        return roomRepository.findById(roomId);
     }
 
     public Room addRoom(Room room){
@@ -22,12 +23,12 @@ public class RoomDaoImpl implements RoomDao {
         return room;
     }
 
-    public Room updateRoom(Room room){
-        Room other = roomRepository.findById(room.getId()).orElse(null);
-        if(other != null){
-            other.setFloor(room.getFloor());
-            other.setNumber(room.getNumber());
-            roomRepository.save(other);
+    public Optional<Room> updateRoom(Room room){
+        Optional<Room> other = roomRepository.findById(room.getId());
+        if(other.isPresent()){
+            other.get().setFloor(room.getFloor());
+            other.get().setNumber(room.getNumber());
+            roomRepository.save(other.get());
         }
 
         return other;

@@ -27,28 +27,24 @@ public class SubjectServiceImplTest {
     @Test
     public void getSubjectTest_shouldCallDaoMethod(){
         subjectService.getSubject(testSubjectId);
-
         verify(subjectDao, Mockito.times(1)).getSubject(Mockito.anyInt());
     }
 
     @Test
     public void addSubjectTest_shouldCallDaoMethod(){
         subjectService.addSubject(testSubject);
-
         verify(subjectDao, Mockito.times(1)).addSubject(Mockito.any());
     }
 
     @Test
     public void updateSubjectTest_shouldCallDaoMethod(){
         subjectService.updateSubject(testSubject);
-
         verify(subjectDao, Mockito.times(1)).updateSubject(Mockito.any());
     }
 
     @Test
     public void deleteSubjectTest_shouldCallDaoMethod(){
         subjectService.deleteSubject(testSubjectId);
-
         verify(subjectDao, Mockito.times(1)).deleteSubject(Mockito.anyInt());
     }
 }

@@ -6,6 +6,8 @@ import ua.com.foxminded.dao.impl.LessonDaoImpl;
 import ua.com.foxminded.model.Lesson;
 import ua.com.foxminded.service.LessonService;
 
+import java.util.Optional;
+
 @Service
 public class LessonServiceImpl implements LessonService {
 
@@ -16,7 +18,7 @@ public class LessonServiceImpl implements LessonService {
         return lessonDaoImpl.addLesson(lesson);
     }
 
-    public Lesson updateLesson(Lesson lesson){
+    public Optional<Lesson> updateLesson(Lesson lesson){
         return lessonDaoImpl.updateLesson(lesson);
     }
 
@@ -24,7 +26,7 @@ public class LessonServiceImpl implements LessonService {
         lessonDaoImpl.deleteLesson(lessonId);
     }
 
-    public Lesson getLesson(int lessonId){
+    public Optional<Lesson> getLesson(int lessonId){
         return lessonDaoImpl.getLesson(lessonId);
     }
 }

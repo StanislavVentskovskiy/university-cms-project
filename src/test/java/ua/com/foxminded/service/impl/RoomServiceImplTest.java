@@ -27,28 +27,24 @@ public class RoomServiceImplTest {
     @Test
     public void addRoomTest_shouldCallDaoMethod(){
         roomService.addRoom(testRoom);
-
         verify(roomDao, Mockito.times(1)).addRoom(Mockito.any());
     }
 
     @Test
     public void updateRoomTest_shouldCallDaoMethod(){
         roomService.updateRoom(testRoom);
-
         verify(roomDao, Mockito.times(1)).updateRoom(Mockito.any());
     }
 
     @Test
     public void deleteRoomTest_shouldCallDaoMethod(){
         roomService.deleteRoom(testRoomId);
-
         verify(roomDao, Mockito.times(1)).deleteRoom(Mockito.anyInt());
     }
 
     @Test
     public void getRoomTest_shouldCallDaoMethod(){
         roomService.deleteRoom(testRoomId);
-
         verify(roomDao, Mockito.times(1)).deleteRoom(Mockito.anyInt());
     }
 }

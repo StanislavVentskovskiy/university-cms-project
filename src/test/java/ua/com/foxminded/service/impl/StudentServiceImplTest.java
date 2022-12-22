@@ -27,28 +27,24 @@ public class StudentServiceImplTest {
     @Test
     public void getStudentTest_shouldCallDaoMethod(){
         studentService.getStudent(testStudentId);
-
         verify(studentDao, Mockito.times(1)).getStudent(Mockito.anyInt());
     }
 
     @Test
     public void addStudentTest_shouldCallDaoMethod(){
         studentService.addStudent(testStudent);
-
         verify(studentDao, Mockito.times(1)).addStudent(Mockito.any());
     }
 
     @Test
     public void updateStudentTest_shouldCallDaoMethod(){
         studentService.updateStudent(testStudent);
-
         verify(studentDao, Mockito.times(1)).updateStudent(Mockito.any());
     }
 
     @Test
     public void deleteStudentTest_shouldCallDaoMethod(){
         studentService.deleteStudent(testStudentId);
-
         verify(studentDao, Mockito.times(1)).deleteStudent(Mockito.anyInt());
     }
 }

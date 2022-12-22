@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import ua.com.foxminded.dao.impl.StudentDaoImpl;
 import ua.com.foxminded.model.Student;
 import ua.com.foxminded.service.StudentService;
+import java.util.Optional;
 
 @Service
 public class StudentServiceImpl implements StudentService {
@@ -12,7 +13,7 @@ public class StudentServiceImpl implements StudentService {
     @Autowired
     StudentDaoImpl studentDaoImpl;
 
-    public Student getStudent(int studentId){
+    public Optional<Student> getStudent(int studentId){
         return studentDaoImpl.getStudent(studentId);
     }
 
@@ -20,7 +21,7 @@ public class StudentServiceImpl implements StudentService {
         return studentDaoImpl.addStudent(student);
     }
 
-    public Student updateStudent(Student student){
+    public Optional<Student> updateStudent(Student student){
         return studentDaoImpl.updateStudent(student);
     }
 

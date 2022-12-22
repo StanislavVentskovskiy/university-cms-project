@@ -2,13 +2,15 @@ package ua.com.foxminded.service;
 
 import ua.com.foxminded.model.Subject;
 
+import java.util.Optional;
+
 public interface SubjectService {
 
-    Subject getSubject(int subjectId);
+    Optional<Subject> getSubject(int subjectId);
 
     Subject addSubject(Subject subject);
 
-    Subject updateSubject(Subject subject);
+    Optional<Subject> updateSubject(Subject subject);
 
     void deleteSubject(int subjectId);
 }

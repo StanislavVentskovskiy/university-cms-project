@@ -2,13 +2,15 @@ package ua.com.foxminded.service;
 
 import ua.com.foxminded.model.Lesson;
 
+import java.util.Optional;
+
 public interface LessonService {
 
     void deleteLesson(int lessonId);
 
     Lesson addLesson(Lesson lesson);
 
-    Lesson updateLesson(Lesson lesson);
+    Optional<Lesson> updateLesson(Lesson lesson);
 
-    Lesson getLesson(int lessonId);
+    Optional<Lesson> getLesson(int lessonId);
 }

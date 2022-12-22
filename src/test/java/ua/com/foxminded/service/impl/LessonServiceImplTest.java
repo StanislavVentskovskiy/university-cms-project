@@ -27,28 +27,24 @@ public class LessonServiceImplTest {
     @Test
     public void addLessonTest_shouldCallDaoMethod(){
         lessonService.addLesson(testLesson);
-
         verify(lessonDao, Mockito.times(1)).addLesson(Mockito.any());
     }
 
     @Test
     public void updateLessonTest_shouldCallDaoMethod(){
         lessonService.updateLesson(testLesson);
-
         verify(lessonDao, Mockito.times(1)).updateLesson(Mockito.any());
     }
 
     @Test
     public void deleteLessonTest_shouldCallDaoMethod(){
         lessonService.deleteLesson(testLessonId);
-
         verify(lessonDao, Mockito.times(1)).deleteLesson(Mockito.anyInt());
     }
 
     @Test
     public void getLessonTest_shouldCallDaoMethod(){
         lessonService.getLesson(testLessonId);
-
         verify(lessonDao, Mockito.times(1)).getLesson(Mockito.anyInt());
     }
 }

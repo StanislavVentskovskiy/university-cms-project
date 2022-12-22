@@ -1,61 +1,56 @@
 package ua.com.foxminded.dao.impl;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
 import ua.com.foxminded.model.Room;
-import static org.junit.Assert.assertTrue;
+import java.util.Optional;
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.verify;
 
 @RunWith(SpringRunner.class)
 @Sql(scripts = {"classpath:test-schema.sql"})
 @SpringBootTest
 public class RoomDaoImplTest {
 
-    @Autowired
+    @Mock
     RoomDaoImpl roomDaoImpl;
 
     private Room actualRoom;
     private Room expectedRoom;
     private int testRoomId = 1;
     private int testRoomNumber = 2;
-
-    @Before
-    public void initTestData(){
-        expectedRoom = new Room(1,1);
-    }
+    private Optional<Room> expectedOptional;
+    private Optional<Room> actualOptional;
 
     @Test
     public void addRoomTest_shouldReturnRoom(){
+        Mockito.when(roomDaoImpl.addRoom(expectedRoom)).thenReturn(expectedRoom);
         actualRoom = roomDaoImpl.addRoom(expectedRoom);
-
         assertEquals(expectedRoom,actualRoom);
     }
 
     @Test
-    public void deleteRoomTest_shouldReturnNull(){
+    public void deleteRoomTest_shouldReturnTrue(){
         roomDaoImpl.deleteRoom(testRoomId);
-
-        assertTrue(roomDaoImpl.getRoom(testRoomId) == null);
+        verify(roomDaoImpl, Mockito.times(1)).deleteRoom(Mockito.anyInt());
     }
 
     @Test
-    public void getRoomTest_shouldReturnLesson(){
-        actualRoom = roomDaoImpl.getRoom(testRoomId);
-
-        assertTrue(actualRoom instanceof Room);
+    public void getRoomTest_shouldReturnOptionalRoom(){
+        Mockito.when(roomDaoImpl.getRoom(testRoomId)).thenReturn(expectedOptional);
+        actualOptional = roomDaoImpl.getRoom(testRoomId);
+        assertEquals(actualOptional, expectedOptional);
     }
 
     @Test
-    public void updateRoomTest_shouldReturnRoom(){
-        expectedRoom = roomDaoImpl.getRoom(testRoomId);
-        expectedRoom.setNumber(testRoomNumber);
-        actualRoom = roomDaoImpl.updateRoom(expectedRoom);
-
-        assertTrue(actualRoom.equals(expectedRoom));
+    public void updateRoomTest_shouldReturnOptionalRoom(){
+        Mockito.when(roomDaoImpl.updateRoom(expectedRoom)).thenReturn(expectedOptional);
+        actualOptional = roomDaoImpl.updateRoom(expectedRoom);
+        assertEquals(actualOptional,expectedOptional);
     }
 }

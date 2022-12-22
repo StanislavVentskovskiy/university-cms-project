@@ -1,14 +1,15 @@
 package ua.com.foxminded.dao;
 
 import ua.com.foxminded.model.Student;
+import java.util.Optional;
 
 public interface StudentDao {
 
-    Student getStudent(int studentId);
+    Optional<Student> getStudent(int studentId);
 
     Student addStudent(Student student);
 
-    Student updateStudent(Student student);
+    Optional<Student> updateStudent(Student student);
 
     void deleteStudent(int studentId);
 }
