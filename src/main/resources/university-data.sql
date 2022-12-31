@@ -77,3 +77,41 @@ INSERT INTO university.subjects(name)
 VALUES('Instrumental Analysis');
 INSERT INTO university.subjects(name)
 VALUES('Higher Mathematics');
+
+INSERT INTO university.groups(name)
+VALUES('ME-0609');
+INSERT INTO university.groups(name)
+VALUES('MA-1010');
+INSERT INTO university.groups(name)
+values('MQ-1612');
+
+INSERT INTO university.students(group_id,course,name,email,birthday)
+VALUES(1,3,'Thailia Beck','Thailia@gmail.com','1992-01-02');
+INSERT INTO university.students(group_id,course,name,email,birthday)
+VALUES(1,3,'Jade Skeldon','Skeldon@gmail.com','1992-05-03');
+INSERT INTO university.students(group_id,course,name,email,birthday)
+VALUES(1,3,'Gardner Hargraves','Hargraves@gmail.com','1992-01-10');
+INSERT INTO university.students(group_id,course,name,email,birthday)
+VALUES(1,3,'Clara Manwaring','Manwaring@gmail.com','1992-05-01');
+INSERT INTO university.students(group_id,course,name,email,birthday)
+VALUES(1,3,'Robin Glover','Glover@gmail.com','1992-01-02');
+INSERT INTO university.students(group_id,course,name,email,birthday)
+VALUES(2,2,'Thailia Beck','Thailia@gmail.com','1992-01-02');
+INSERT INTO university.students(group_id,course,name,email,birthday)
+VALUES(2,2,'Thailia Beck','Thailia@gmail.com','1992-01-02');
+INSERT INTO university.students(group_id,course,name,email,birthday)
+VALUES(2,2,'Thailia Beck','Thailia@gmail.com','1992-01-02');
+INSERT INTO university.students(group_id,course,name,email,birthday)
+VALUES(2,2,'Thailia Beck','Thailia@gmail.com','1992-01-02');
+INSERT INTO university.students(group_id,course,name,email,birthday)
+VALUES(2,2,'Thailia Beck','Thailia@gmail.com','1992-01-02');
+INSERT INTO university.students(group_id,course,name,email,birthday)
+VALUES(3,1,'Thailia Beck','Thailia@gmail.com','1992-01-02');
+INSERT INTO university.students(group_id,course,name,email,birthday)
+VALUES(3,1,'Thailia Beck','Thailia@gmail.com','1992-01-02');
+INSERT INTO university.students(group_id,course,name,email,birthday)
+VALUES(3,1,'Thailia Beck','Thailia@gmail.com','1992-01-02');
+INSERT INTO university.students(group_id,course,name,email,birthday)
+VALUES(3,1,'Thailia Beck','Thailia@gmail.com','1992-01-02');
+INSERT INTO university.students(group_id,course,name,email,birthday)
+VALUES(3,1,'Thailia Beck','Thailia@gmail.com','1992-01-02');
