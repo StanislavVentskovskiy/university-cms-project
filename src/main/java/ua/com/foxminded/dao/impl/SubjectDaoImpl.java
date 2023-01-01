@@ -5,6 +5,8 @@ import org.springframework.stereotype.Repository;
 import ua.com.foxminded.dao.SubjectDao;
 import ua.com.foxminded.dao.repository.SubjectRepository;
 import ua.com.foxminded.model.Subject;
+
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -35,5 +37,9 @@ public class SubjectDaoImpl implements SubjectDao {
 
     public void deleteSubject(int subjectId){
         subjectRepository.deleteById(subjectId);
+    }
+
+    public List<Subject> getSubjects(){
+        return subjectRepository.findAll();
     }
 }

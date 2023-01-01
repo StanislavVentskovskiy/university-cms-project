@@ -1,6 +1,8 @@
 package ua.com.foxminded.dao;
 
 import ua.com.foxminded.model.Subject;
+
+import java.util.List;
 import java.util.Optional;
 
 public interface SubjectDao {
@@ -12,4 +14,6 @@ public interface SubjectDao {
     Optional<Subject> updateSubject(Subject subject);
 
     void deleteSubject(int subjectId);
+
+    List<Subject> getSubjects();
 }

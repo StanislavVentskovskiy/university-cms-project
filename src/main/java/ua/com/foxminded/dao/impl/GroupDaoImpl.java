@@ -6,6 +6,8 @@ import org.springframework.transaction.annotation.Transactional;
 import ua.com.foxminded.dao.GroupDao;
 import ua.com.foxminded.dao.repository.GroupRepository;
 import ua.com.foxminded.model.Group;
+
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -14,6 +16,10 @@ public class GroupDaoImpl implements GroupDao {
 
     @Autowired
     GroupRepository groupRepository;
+
+    public List<Group> getGroups(){
+        return groupRepository.findAll();
+    }
 
     public Group addGroup(Group group){
         return groupRepository.save(group);

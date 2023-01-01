@@ -5,6 +5,7 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "students", schema = "university")
+@SecondaryTable(name = "groups", pkJoinColumns = @PrimaryKeyJoinColumn(name = "id"))
 public class Student {
 
     @Id
@@ -12,7 +13,7 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "group_id")
+    @Column(name = "group_id", insertable = false, updatable = false)
     private int groupId;
 
     @Column(name = "course")
@@ -26,6 +27,10 @@ public class Student {
 
     @Column(name = "birthday")
     private LocalDate birthday;
+
+    @OneToOne
+    @JoinColumn(name = "group_id")
+    private Group group;
 
     public Student(int id, int groupId, int course, String name, String email, LocalDate birthsday) {
         this.id = id;
@@ -84,6 +89,14 @@ public class Student {
 
     public void setBirthsday(LocalDate birthsday) {
         this.birthday = birthsday;
+    }
+
+    public Group getGroup() {
+        return group;
+    }
+
+    public void setGroup(Group group) {
+        this.group = group;
     }
 
     @Override

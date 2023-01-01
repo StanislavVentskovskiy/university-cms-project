@@ -2,6 +2,7 @@ package ua.com.foxminded.service;
 
 import ua.com.foxminded.model.Student;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface StudentService {
@@ -13,4 +14,6 @@ public interface StudentService {
     Optional<Student> updateStudent(Student student);
 
     void deleteStudent(int studentId);
+
+    List<Student> getStudents();
 }

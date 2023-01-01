@@ -6,6 +6,7 @@ import ua.com.foxminded.dao.impl.GroupDaoImpl;
 import ua.com.foxminded.model.Group;
 import ua.com.foxminded.service.GroupService;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -13,6 +14,10 @@ public class GroupServiceImpl implements GroupService {
 
     @Autowired
     GroupDaoImpl groupDaoImpl;
+
+    public List<Group> getGroups(){
+        return groupDaoImpl.getGroups();
+    }
 
     public Group addGroup(Group group){
         return groupDaoImpl.addGroup(group);

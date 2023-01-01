@@ -6,6 +6,7 @@ import ua.com.foxminded.dao.impl.TeacherDaoImpl;
 import ua.com.foxminded.model.Teacher;
 import ua.com.foxminded.service.TeacherService;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -13,6 +14,10 @@ public class TeacherServiceImpl implements TeacherService {
 
     @Autowired
     TeacherDaoImpl teacherDao;
+
+    public List<Teacher> getTeachers(){
+        return teacherDao.getTeachers();
+    };
 
     public Optional<Teacher> getTeacher(int teacherId){
         return teacherDao.getTeacher(teacherId);

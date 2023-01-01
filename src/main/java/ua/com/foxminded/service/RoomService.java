@@ -1,6 +1,8 @@
 package ua.com.foxminded.service;
 
 import ua.com.foxminded.model.Room;
+
+import java.util.List;
 import java.util.Optional;
 
 public interface RoomService {
@@ -12,4 +14,6 @@ public interface RoomService {
     Optional<Room> updateRoom(Room room);
 
     void deleteRoom(int roomId);
+
+    List<Room> getRooms();
 }

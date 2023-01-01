@@ -6,6 +6,7 @@ import ua.com.foxminded.dao.impl.SubjectDaoImpl;
 import ua.com.foxminded.model.Subject;
 import ua.com.foxminded.service.SubjectService;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -28,5 +29,9 @@ public class SubjectServiceImpl implements SubjectService {
 
     public void deleteSubject(int subjectId){
         subjectDaoImpl.deleteSubject(subjectId);
+    }
+
+    public List<Subject> getSubjects(){
+        return subjectDaoImpl.getSubjects();
     }
 }

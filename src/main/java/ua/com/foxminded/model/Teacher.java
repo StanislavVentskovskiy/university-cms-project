@@ -1,11 +1,11 @@
 package ua.com.foxminded.model;
 
 import jakarta.persistence.*;
-
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "teachers", schema = "university")
+@SecondaryTable(name="subjects", pkJoinColumns = @PrimaryKeyJoinColumn(name = "id"))
 public class Teacher {
 
     @Id
@@ -27,6 +27,9 @@ public class Teacher {
 
     @Column(name = "position")
     private String position;
+
+    @Column(name="name", table = "subjects")
+    private String subjectName;
 
     public Teacher(int id, String name, String email, LocalDate birthday, int subjectId, String position) {
         this.id = id;
@@ -85,6 +88,14 @@ public class Teacher {
 
     public void setPosition(String position) {
         this.position = position;
+    }
+
+    public String getSubjectName() {
+        return subjectName;
+    }
+
+    public void setSubjectName(String subjectName) {
+        this.subjectName = subjectName;
     }
 
     @Override

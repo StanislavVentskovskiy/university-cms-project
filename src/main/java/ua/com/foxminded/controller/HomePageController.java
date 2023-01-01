@@ -11,9 +11,9 @@ public class HomePageController {
     @Value("${spring.application.name}")
     String applicationName;
 
-    @GetMapping("/")
+    @GetMapping("/index")
     public String homePage(Model model){
         model.addAttribute("applicationName", applicationName);
-        return "home";
+        return "index";
     }
 }

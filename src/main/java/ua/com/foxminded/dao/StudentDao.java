@@ -1,6 +1,8 @@
 package ua.com.foxminded.dao;
 
 import ua.com.foxminded.model.Student;
+
+import java.util.List;
 import java.util.Optional;
 
 public interface StudentDao {
@@ -12,4 +14,6 @@ public interface StudentDao {
     Optional<Student> updateStudent(Student student);
 
     void deleteStudent(int studentId);
+
+    List<Student> getStudents();
 }

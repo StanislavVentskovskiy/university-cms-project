@@ -5,6 +5,8 @@ import org.springframework.stereotype.Repository;
 import ua.com.foxminded.dao.RoomDao;
 import ua.com.foxminded.dao.repository.RoomRepository;
 import ua.com.foxminded.model.Room;
+
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -36,5 +38,9 @@ public class RoomDaoImpl implements RoomDao {
 
     public void deleteRoom(int roomId){
         roomRepository.deleteById(roomId);
+    }
+
+    public List<Room> getRooms(){
+        return roomRepository.findAll();
     }
 }
