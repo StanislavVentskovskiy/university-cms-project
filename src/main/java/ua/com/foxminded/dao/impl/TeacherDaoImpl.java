@@ -5,7 +5,6 @@ import org.springframework.stereotype.Repository;
 import ua.com.foxminded.dao.TeacherDao;
 import ua.com.foxminded.dao.repository.TeacherRepository;
 import ua.com.foxminded.model.Teacher;
-
 import java.util.List;
 import java.util.Optional;
 

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 import ua.com.foxminded.dao.LessonDao;
 import ua.com.foxminded.dao.repository.LessonRepository;
 import ua.com.foxminded.model.Lesson;
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -41,5 +42,9 @@ public class LessonDaoImpl implements LessonDao {
 
     public void deleteLesson(int lessonId){
         lessonRepository.deleteById(lessonId);
+    }
+
+    public List<Lesson> getLessons(){
+        return lessonRepository.findAll();
     }
 }

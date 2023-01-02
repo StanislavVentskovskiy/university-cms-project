@@ -14,16 +14,16 @@ public class Lesson {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "room_id")
+    @Column(name = "room_id", insertable = false, updatable = false)
     private int roomId;
 
-    @Column(name = "group_id")
+    @Column(name = "group_id", insertable = false, updatable = false)
     private int groupId;
 
-    @Column(name = "teacher_id")
+    @Column(name = "teacher_id", insertable = false, updatable = false)
     private int teacherId;
 
-    @Column(name = "subject_id")
+    @Column(name = "subject_id", insertable = false, updatable = false)
     private int subjectId;
 
     @Column(name = "start_time")
@@ -34,6 +34,23 @@ public class Lesson {
 
     @Column(name = "date")
     private LocalDate date;
+
+    @OneToOne
+    @JoinColumn(name = "room_id")
+    private Room room;
+
+    @OneToOne
+    @JoinColumn(name = "group_id")
+    private Group group;
+
+    @OneToOne
+    @JoinColumn(name = "teacher_id")
+    private Teacher teacher;
+
+    @OneToOne
+    @JoinColumn(name = "subject_id")
+    private Subject subject;
+
 
     public Lesson(int roomId, int groupId, int teacherId, int subjectId, LocalTime startTime, LocalTime endTime, LocalDate date) {
         this.roomId = roomId;
@@ -109,6 +126,38 @@ public class Lesson {
 
     public void setDate(LocalDate date) {
         this.date = date;
+    }
+
+    public Room getRoom() {
+        return room;
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
+    }
+
+    public Group getGroup() {
+        return group;
+    }
+
+    public void setGroup(Group group) {
+        this.group = group;
+    }
+
+    public Teacher getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
+    }
+
+    public Subject getSubject() {
+        return subject;
+    }
+
+    public void setSubject(Subject subject) {
+        this.subject = subject;
     }
 
     @Override

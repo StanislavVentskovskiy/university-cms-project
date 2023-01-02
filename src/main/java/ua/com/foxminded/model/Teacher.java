@@ -22,14 +22,15 @@ public class Teacher {
     @Column(name = "birthday")
     private LocalDate birthday;
 
-    @Column(name = "subject_id")
+    @Column(name = "subject_id", insertable = false, updatable = false)
     private int subjectId;
 
     @Column(name = "position")
     private String position;
 
-    @Column(name="name", table = "subjects")
-    private String subjectName;
+    @OneToOne
+    @JoinColumn(name = "subject_id")
+    private Subject subject;
 
     public Teacher(int id, String name, String email, LocalDate birthday, int subjectId, String position) {
         this.id = id;
@@ -90,12 +91,12 @@ public class Teacher {
         this.position = position;
     }
 
-    public String getSubjectName() {
-        return subjectName;
+    public Subject getSubject() {
+        return subject;
     }
 
-    public void setSubjectName(String subjectName) {
-        this.subjectName = subjectName;
+    public void setSubject(Subject subject) {
+        this.subject = subject;
     }
 
     @Override

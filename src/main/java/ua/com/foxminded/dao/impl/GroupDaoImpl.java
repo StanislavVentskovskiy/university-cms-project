@@ -6,7 +6,6 @@ import org.springframework.transaction.annotation.Transactional;
 import ua.com.foxminded.dao.GroupDao;
 import ua.com.foxminded.dao.repository.GroupRepository;
 import ua.com.foxminded.model.Group;
-
 import java.util.List;
 import java.util.Optional;
 
