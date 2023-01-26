@@ -232,3 +232,12 @@ insert into university.lessons(room_id,group_id,teacher_id,subject_id,start_time
 values(2,3,2,2,'9:30','10:30','2022-06-09');
 insert into university.lessons(room_id,group_id,teacher_id,subject_id,start_time,end_time,date)
 values(1,3,1,1,'10:45','11:45','2022-06-09');
+
+insert into university.roles(name)
+values ('ADMIN');
+insert into university.roles(name)
+values ('TEACHER');
+insert into university.roles(name)
+values ('STUDENT');
+
+

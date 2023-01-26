@@ -14,6 +14,10 @@ DROP TABLE IF EXISTS university.subjects
     CASCADE;
 DROP TABLE IF EXISTS university.teachers
     CASCADE;
+DROP TABLE IF EXISTS university.roles
+    CASCADE;
+DROP TABLE IF EXISTS university.user_roles
+    CASCADE;
 
 CREATE TABLE IF NOT EXISTS university.rooms
 (
@@ -146,3 +150,13 @@ CREATE TABLE IF NOT EXISTS university.lessons
 
 ALTER TABLE IF EXISTS university.lessons
     OWNER to postgres;
+
+create table if not exists roles
+(
+    id   serial
+        primary key,
+    name varchar(255)
+);
+
+alter table roles
+    owner to postgres;
