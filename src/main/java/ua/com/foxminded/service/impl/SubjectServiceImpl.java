@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import ua.com.foxminded.dao.impl.SubjectDaoImpl;
 import ua.com.foxminded.model.Subject;
 import ua.com.foxminded.service.SubjectService;
-
 import java.util.List;
 import java.util.Optional;
 

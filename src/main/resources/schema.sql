@@ -16,8 +16,6 @@ DROP TABLE IF EXISTS university.teachers
     CASCADE;
 DROP TABLE IF EXISTS university.roles
     CASCADE;
-DROP TABLE IF EXISTS university.user_roles
-    CASCADE;
 
 CREATE TABLE IF NOT EXISTS university.rooms
 (

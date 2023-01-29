@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import ua.com.foxminded.dao.impl.LessonDaoImpl;
 import ua.com.foxminded.model.Lesson;
 import ua.com.foxminded.service.LessonService;
-
 import java.util.List;
 import java.util.Optional;
 

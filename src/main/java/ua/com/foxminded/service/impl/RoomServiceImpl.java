@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import ua.com.foxminded.dao.impl.RoomDaoImpl;
 import ua.com.foxminded.model.Room;
 import ua.com.foxminded.service.RoomService;
-
 import java.util.List;
 import java.util.Optional;
 
