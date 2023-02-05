@@ -16,7 +16,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(AdminController.class)
-public class AdminControllerIntegrationTest {
+public class AuthControllerTest {
 
     @Autowired
     private MockMvc mvc;
