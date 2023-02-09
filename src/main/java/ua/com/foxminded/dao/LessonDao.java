@@ -9,7 +9,7 @@ public interface LessonDao {
 
     Lesson addLesson(Lesson lesson);
 
-    Optional<Lesson> updateLesson(Lesson lesson);
+    Lesson updateLesson(Lesson lesson);
 
     void deleteLesson(int lessonId);
 

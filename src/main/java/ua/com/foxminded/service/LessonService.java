@@ -11,7 +11,7 @@ public interface LessonService {
 
     Lesson addLesson(Lesson lesson);
 
-    Optional<Lesson> updateLesson(Lesson lesson);
+    Lesson updateLesson(Lesson lesson);
 
     Optional<Lesson> getLesson(int lessonId);
 

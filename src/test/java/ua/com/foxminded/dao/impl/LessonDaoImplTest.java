@@ -48,8 +48,8 @@ public class LessonDaoImplTest {
 
     @Test
     public void updateLessonTest_shouldReturnOptionalLesson(){
-        Mockito.when(lessonDaoImpl.updateLesson(expectedLesson)).thenReturn(expectedOptional);
-        actualOptional = lessonDaoImpl.updateLesson(expectedLesson);
+        Mockito.when(lessonDaoImpl.updateLesson(expectedLesson)).thenReturn(expectedLesson);
+        actualLesson = lessonDaoImpl.updateLesson(expectedLesson);
         assertEquals(expectedOptional,actualOptional);
     }
 }

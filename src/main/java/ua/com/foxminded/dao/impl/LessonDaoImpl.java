@@ -24,17 +24,18 @@ public class LessonDaoImpl implements LessonDao {
         return lesson;
     }
 
-    public Optional<Lesson> updateLesson(Lesson lesson){
-        Optional<Lesson> other = lessonRepository.findById(lesson.getId());
-        if(other.isPresent()){
-            other.get().setDate(lesson.getDate());
-            other.get().setEndTime(lesson.getEndTime());
-            other.get().setStartTime(lesson.getStartTime());
-            other.get().setDate(lesson.getDate());
-            other.get().setGroupId(lesson.getGroupId());
-            other.get().setRoomId(lesson.getRoomId());
-            other.get().setTeacherId(lesson.getTeacherId());
-            lessonRepository.save(other.get());
+    public Lesson updateLesson(Lesson lesson){
+        Optional<Lesson> lessonOptional = lessonRepository.findById(lesson.getId());
+        Lesson other = lessonOptional.get();
+        if(other!=null){
+            other.setDate(lesson.getDate());
+            other.setEndTime(lesson.getEndTime());
+            other.setStartTime(lesson.getStartTime());
+            other.setDate(lesson.getDate());
+            other.setGroupId(lesson.getGroupId());
+            other.setRoomId(lesson.getRoomId());
+            other.setTeacherId(lesson.getTeacherId());
+            lessonRepository.save(other);
         }
 
         return other;

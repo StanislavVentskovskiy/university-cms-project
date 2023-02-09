@@ -28,7 +28,9 @@ public class UserDaoImpl implements UserDao {
         if(other.isPresent()){
             other.get().setUsername(user.getUsername());
             List<Role> roles = other.get().getRoles();
-            roles.add(roleRepository.findById(user.getNewRoleId()).get());
+            if(!(roles.contains(roleRepository.findById(user.getNewRoleId()).get()))){
+                roles.add(roleRepository.findById(user.getNewRoleId()).get());
+            }
             userRepository.save(other.get());
         }
         return other;

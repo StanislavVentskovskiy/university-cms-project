@@ -36,7 +36,6 @@ public class AdminController {
         List<Role> listRoles = roleService.getAllRoles();
         UserDto userDto = new UserDto();
         userDto.setId(user.getId());
-        userDto.setUsername(user.getUsername());
         model.addAttribute("user", user);
         model.addAttribute("listRoles", listRoles);
         return "user-edit";

@@ -17,7 +17,6 @@
 </main>
 
 <div th:replace="~{fragments/footer :: footer}"></div>
-
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
         crossorigin="anonymous">
@@ -36,11 +35,10 @@
             <th>ID</th>
             <th>Username</th>
             <th>User roles</th>
-
         </tr>
         </thead>
-
         <tbody>
+
         <tr th:each = "userEntity: ${users}">
             <td th:text = "${userEntity.id}"></td>
             <td th:text = "${userEntity.username}"></td>
@@ -51,13 +49,10 @@
                     </tr>
                 </table>
             </td>
-
             <td><a th:href="@{'/admin-panel/edit/' + ${userEntity.id}}">Edit</a></td>
-
         </tr>
         </tbody>
     </table>
 </div>
-
 </body>
 </html>

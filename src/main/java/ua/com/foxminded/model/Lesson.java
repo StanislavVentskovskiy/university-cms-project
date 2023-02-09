@@ -1,6 +1,7 @@
 package ua.com.foxminded.model;
 
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -14,16 +15,16 @@ public class Lesson {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "room_id", insertable = false, updatable = false)
+    @Column(name = "room_id")
     private int roomId;
 
-    @Column(name = "group_id", insertable = false, updatable = false)
+    @Column(name = "group_id")
     private int groupId;
 
-    @Column(name = "teacher_id", insertable = false, updatable = false)
+    @Column(name = "teacher_id")
     private int teacherId;
 
-    @Column(name = "subject_id", insertable = false, updatable = false)
+    @Column(name = "subject_id")
     private int subjectId;
 
     @Column(name = "start_time")
@@ -33,22 +34,23 @@ public class Lesson {
     private LocalTime endTime;
 
     @Column(name = "date")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;
 
     @OneToOne
-    @JoinColumn(name = "room_id")
+    @JoinColumn(name = "room_id", insertable = false, updatable = false)
     private Room room;
 
     @OneToOne
-    @JoinColumn(name = "group_id")
+    @JoinColumn(name = "group_id", insertable = false, updatable = false)
     private Group group;
 
     @OneToOne
-    @JoinColumn(name = "teacher_id")
+    @JoinColumn(name = "teacher_id", insertable = false, updatable = false)
     private Teacher teacher;
 
     @OneToOne
-    @JoinColumn(name = "subject_id")
+    @JoinColumn(name = "subject_id", insertable = false, updatable = false)
     private Subject subject;
 
 

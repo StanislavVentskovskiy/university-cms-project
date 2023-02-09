@@ -18,6 +18,6 @@ public class Role {
 
     private String name;
 
-    @ManyToMany(mappedBy = "roles")
-    private List<UserEntity> users = new ArrayList<>();
+ //   @ManyToMany(mappedBy = "roles")
+ //   private List<UserEntity> users = new ArrayList<>();
 }
