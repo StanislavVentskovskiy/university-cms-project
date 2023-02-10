@@ -27,7 +27,7 @@ public class LessonDaoImpl implements LessonDao {
     public Lesson updateLesson(Lesson lesson){
         Optional<Lesson> lessonOptional = lessonRepository.findById(lesson.getId());
         Lesson other = lessonOptional.get();
-        if(other!=null){
+        if (other!=null) {
             other.setDate(lesson.getDate());
             other.setEndTime(lesson.getEndTime());
             other.setStartTime(lesson.getStartTime());

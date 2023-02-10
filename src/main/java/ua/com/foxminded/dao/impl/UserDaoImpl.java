@@ -25,11 +25,12 @@ public class UserDaoImpl implements UserDao {
 
     public Optional<UserEntity> updateUser(UserEntity user){
         Optional<UserEntity> other = userRepository.findById(user.getId());
+        Role userRole = roleRepository.findById(user.getNewRoleId()).get();
         if(other.isPresent()){
             other.get().setUsername(user.getUsername());
             List<Role> roles = other.get().getRoles();
-            if(!(roles.contains(roleRepository.findById(user.getNewRoleId()).get()))){
-                roles.add(roleRepository.findById(user.getNewRoleId()).get());
+            if(!(roles.contains(userRole))){
+                roles.add(userRole);
             }
             userRepository.save(other.get());
         }
