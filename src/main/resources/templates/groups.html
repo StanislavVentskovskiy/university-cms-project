@@ -30,11 +30,14 @@
     <div class = "mx-auto">
         <h1>Group List</h1>
     </div>
+    <a class ="nav-link" th:href="@{/groups/new}">Create new Group</a>
     <table class = "table table-striped table-bordered">
         <thead class = "table-dark">
         <tr>
             <th>ID</th>
             <th>Group Name</th>
+            <th>Delete</th>
+            <th>Edit</th>
         </tr>
         </thead>
 
@@ -42,6 +45,8 @@
         <tr th:each = "group: ${groups}">
             <td th:text = "${group.id}"></td>
             <td th:text = "${group.name}"></td>
+            <td><a th:href="@{'/groups/delete/' + ${group.id}}">Delete</a></td>
+            <td><a th:href="@{'/groups/edit/' + ${group.id}}">Edit</a></td>
         </tr>
         </tbody>
     </table>

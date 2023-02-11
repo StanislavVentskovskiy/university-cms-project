@@ -90,10 +90,10 @@ public class LessonController {
 
     @PostMapping("/lessons/update/{id}")
     @PreAuthorize("hasAnyAuthority('ADMIN','TEACHER')")
-    public String saveUpdatedLesson(@PathVariable("id") Integer id, Lesson lesson, Model model){
-    lesson.setId(id);
-    lessonService.updateLesson(lesson);
+    public String saveUpdatedLesson(@PathVariable("id") Integer id, Lesson lesson){
+        lesson.setId(id);
+        lessonService.updateLesson(lesson);
 
-     return "redirect:/lessons";
+        return "redirect:/lessons";
     }
 }
