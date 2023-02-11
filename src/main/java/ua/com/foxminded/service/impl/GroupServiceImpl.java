@@ -22,15 +22,15 @@ public class GroupServiceImpl implements GroupService {
         return groupDaoImpl.addGroup(group);
     }
 
-    public Optional<Group> updateGroup(Group group){
-        return groupDaoImpl.updateGroup(group);
+    public Group updateGroup(Group group){
+        return groupDaoImpl.updateGroup(group).get();
     }
 
     public void deleteGroup(int groupId){
         groupDaoImpl.deleteGroup(groupId);
     }
 
-    public Optional<Group> getGroup(int groupId){
-        return groupDaoImpl.getGroup(groupId);
+    public Group getGroup(int groupId){
+        return groupDaoImpl.getGroup(groupId).get();
     }
 }

@@ -27,8 +27,8 @@ public class LessonServiceImpl implements LessonService {
         lessonDaoImpl.deleteLesson(lessonId);
     }
 
-    public Optional<Lesson> getLesson(int lessonId){
-        return lessonDaoImpl.getLesson(lessonId);
+    public Lesson getLesson(int lessonId){
+        return lessonDaoImpl.getLesson(lessonId).get();
     }
 
     public List<Lesson> getLessons(){

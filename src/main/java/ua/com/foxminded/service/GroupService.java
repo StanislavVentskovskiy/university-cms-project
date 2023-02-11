@@ -10,7 +10,7 @@ public interface GroupService {
 
     Group addGroup(Group group);
 
-    Optional<Group> updateGroup(Group group);
+    Group updateGroup(Group group);
 
-    Optional<Group> getGroup(int groupId);
+    Group getGroup(int groupId);
 }

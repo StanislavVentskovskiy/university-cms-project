@@ -74,7 +74,7 @@ public class LessonController {
     @GetMapping("/lessons/edit/{id}")
     @PreAuthorize("hasAnyAuthority('ADMIN','TEACHER')")
     public String updateLesson(@PathVariable("id") Integer id, Model model){
-        Lesson lesson = lessonService.getLesson(id).get();
+        Lesson lesson = lessonService.getLesson(id);
         List<Room> listRooms = roomService.getRooms();
         List<Group> listGroups = groupService.getGroups();
         List<Subject> listSubjects = subjectService.getSubjects();

@@ -13,7 +13,7 @@ public interface LessonService {
 
     Lesson updateLesson(Lesson lesson);
 
-    Optional<Lesson> getLesson(int lessonId);
+    Lesson getLesson(int lessonId);
 
     List<Lesson> getLessons();
 }

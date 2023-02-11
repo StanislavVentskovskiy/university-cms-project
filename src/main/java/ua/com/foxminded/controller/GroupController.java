@@ -33,7 +33,7 @@ public class GroupController {
     @GetMapping("/groups/edit/{id}")
     @PreAuthorize("hasAnyAuthority('ADMIN','TEACHER')")
     public String updateGroup(@PathVariable("id") Integer id, Model model){
-        Group group = groupService.getGroup(id).get();
+        Group group = groupService.getGroup(id);
         model.addAttribute("group", group);
 
         return "group-edit";
