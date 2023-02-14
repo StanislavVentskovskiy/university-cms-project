@@ -1,11 +1,11 @@
 package ua.com.foxminded.model;
 
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "students", schema = "university")
-@SecondaryTable(name = "groups", pkJoinColumns = @PrimaryKeyJoinColumn(name = "id"))
 public class Student {
 
     @Id
@@ -13,7 +13,7 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "group_id", insertable = false, updatable = false)
+    @Column(name = "group_id")
     private int groupId;
 
     @Column(name = "course")
@@ -26,19 +26,20 @@ public class Student {
     private String email;
 
     @Column(name = "birthday")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthday;
 
     @OneToOne
-    @JoinColumn(name = "group_id")
+    @JoinColumn(name = "group_id", insertable = false, updatable = false)
     private Group group;
 
-    public Student(int id, int groupId, int course, String name, String email, LocalDate birthsday) {
+    public Student(int id, int groupId, int course, String name, String email, LocalDate birthday) {
         this.id = id;
         this.groupId = groupId;
         this.course = course;
         this.name = name;
         this.email = email;
-        this.birthday = birthsday;
+        this.birthday = birthday;
     }
 
     public Student(){}

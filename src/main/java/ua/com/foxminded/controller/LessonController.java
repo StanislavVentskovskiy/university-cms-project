@@ -39,7 +39,7 @@ public class LessonController {
 
     @GetMapping("/lessons/new")
     @PreAuthorize("hasAnyAuthority('ADMIN','TEACHER')")
-    public String showCreateUserForm(Model model){
+    public String showCreateLessonForm(Model model){
         LessonDto lessonDto = new LessonDto();
         List<Room> listRooms = roomService.getRooms();
         List<Group> listGroups = groupService.getGroups();

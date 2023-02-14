@@ -103,11 +103,11 @@ CREATE TABLE IF NOT EXISTS university.groupsstudents
     CONSTRAINT groups FOREIGN KEY (group_id)
         REFERENCES university.groups (id) MATCH SIMPLE
         ON UPDATE NO ACTION
-        ON DELETE NO ACTION,
+        ON DELETE CASCADE,
     CONSTRAINT students FOREIGN KEY (student_id)
         REFERENCES university.students (id) MATCH SIMPLE
         ON UPDATE NO ACTION
-        ON DELETE NO ACTION
+        ON DELETE CASCADE
 )
 
     TABLESPACE pg_default;

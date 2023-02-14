@@ -1,9 +1,7 @@
 package ua.com.foxminded.service;
 
 import ua.com.foxminded.model.Lesson;
-
 import java.util.List;
-import java.util.Optional;
 
 public interface LessonService {
 

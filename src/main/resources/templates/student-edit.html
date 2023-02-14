@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Student info</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<div th:replace="~{fragments/navigation :: navigation}"></div>
+<main role="main" class="flex-shrink-0">
+  <div class="container mt-5">
+    <div class="jumbotron">
+      <h1 class="display-4">Edit Student info</h1>
+    </div>
+  </div>
+</main>
+<div th:replace="~{fragments/footer :: footer}"></div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
+        crossorigin="anonymous">
+</script>
+<script
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js">
+</script>
+<div class="container">
+  <form role="form" method="post" th:action="@{'/students/update/'+${student.id}}" th:object="${student}">
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <div>
+          <label th:for="*{name}">Change student name</label>
+          <input type="text" th:field="*{name}" />
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <div>
+          <label th:for="*{course}">Change student course</label>
+          <input type="number" th:field="*{course}" />
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <div>
+          <label th:for="*{email}">Change student email</label>
+          <input type="email" th:field="*{email}" />
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 form-group">
+      <label>Date</label>
+      <input type="date" class="form-control" placeholder="" id="date" th:field="*{birthsday}">
+    </div>
+
+    <div class="form-group col-md-6">
+      <label for="group_id">Change student group</label>
+      <select class="form-control" th:field="*{groupId}"  id="group_id">
+        <option value="0"></option>
+        <option th:each="group : ${groupList}" th:value="${group.id}" th:text="${group.name}"></option>
+      </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create</button>
+  </form>
+</div>
+</section>
+</main>
+</body>
+</html>

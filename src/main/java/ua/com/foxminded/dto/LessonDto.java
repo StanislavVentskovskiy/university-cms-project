@@ -2,7 +2,6 @@ package ua.com.foxminded.dto;
 
 import jakarta.persistence.Id;
 import lombok.Data;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 

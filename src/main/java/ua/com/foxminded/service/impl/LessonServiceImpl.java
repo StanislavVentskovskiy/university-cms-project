@@ -7,7 +7,6 @@ import ua.com.foxminded.dto.LessonDto;
 import ua.com.foxminded.model.Lesson;
 import ua.com.foxminded.service.LessonService;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class LessonServiceImpl implements LessonService {
@@ -44,6 +43,7 @@ public class LessonServiceImpl implements LessonService {
         lesson.setDate(lessonDto.getDate());
         lesson.setStartTime(lessonDto.getStartTime());
         lesson.setEndTime(lessonDto.getEndTime());
+
         return lesson;
     }
 }

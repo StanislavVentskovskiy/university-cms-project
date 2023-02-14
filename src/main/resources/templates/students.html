@@ -26,6 +26,7 @@
   <div class = "mx-auto">
     <h1>Student List</h1>
   </div>
+  <a class ="nav-link" th:href="@{/students/new}">Add new Student</a>
   <table class = "table table-striped table-bordered">
     <thead class = "table-dark">
     <tr>
@@ -35,6 +36,8 @@
       <th>Course Number</th>
       <th>Email</th>
       <th>Student Birthday</th>
+      <th>Delete Student</th>
+      <th>Edit Student info</th>
     </tr>
     </thead>
     <tbody>
@@ -45,6 +48,8 @@
       <td th:text = "${student.course}"></td>
       <td th:text = "${student.email}"></td>
       <td th:text = "${student.birthsday}"></td>
+      <td><a th:href="@{'/students/delete/' + ${student.id}}">Delete</a></td>
+      <td><a th:href="@{'/students/edit/' + ${student.id}}">Edit</a></td>
     </tr>
     </tbody>
   </table>

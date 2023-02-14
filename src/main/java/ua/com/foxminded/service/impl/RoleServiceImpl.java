@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import ua.com.foxminded.dao.repository.RoleRepository;
 import ua.com.foxminded.model.Role;
 import ua.com.foxminded.service.RoleService;
-
 import java.util.List;
 
 @Service

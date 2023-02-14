@@ -1,7 +1,6 @@
 package ua.com.foxminded.service;
 
 import ua.com.foxminded.model.Subject;
-
 import java.util.List;
 import java.util.Optional;
 
