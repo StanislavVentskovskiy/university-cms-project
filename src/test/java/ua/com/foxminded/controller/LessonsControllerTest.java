@@ -84,7 +84,7 @@ public class LessonsControllerTest {
 
     @Test
     @WithMockUser(value = "user", roles = {"ADMIN"})
-    public void givenSaveNewLesson_shouldRedirectToGroupView() throws Exception {
+    public void givenSaveNewLesson_shouldRedirectToLessonView() throws Exception {
         mvc.perform(post("/lessons/save").with(csrf()))
             .andExpect(status().is3xxRedirection());
     }

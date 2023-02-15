@@ -5,7 +5,6 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "teachers", schema = "university")
-@SecondaryTable(name="subjects", pkJoinColumns = @PrimaryKeyJoinColumn(name = "id"))
 public class Teacher {
 
     @Id
@@ -22,14 +21,14 @@ public class Teacher {
     @Column(name = "birthday")
     private LocalDate birthday;
 
-    @Column(name = "subject_id", insertable = false, updatable = false)
+    @Column(name = "subject_id")
     private int subjectId;
 
     @Column(name = "position")
     private String position;
 
     @OneToOne
-    @JoinColumn(name = "subject_id")
+    @JoinColumn(name = "subject_id", insertable = false, updatable = false)
     private Subject subject;
 
     public Teacher(int id, String name, String email, LocalDate birthday, int subjectId, String position) {
