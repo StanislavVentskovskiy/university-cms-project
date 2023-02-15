@@ -60,7 +60,7 @@ public class StudentController {
     @GetMapping("/students/edit/{id}")
     @PreAuthorize("hasAnyAuthority('ADMIN', 'TEACHER')")
     public String editStudent(@PathVariable("id") Integer id, Model model){
-        Student student = studentService.getStudent(id);
+        Student student = studentService.getStudent(id).get();
         List<Group> groupList = groupService.getGroups();
         model.addAttribute("student", student);
         model.addAttribute("groupList", groupList);
@@ -76,6 +76,4 @@ public class StudentController {
 
         return "redirect:/students";
     }
-
-
 }

@@ -15,6 +15,7 @@ import ua.com.foxminded.model.Subject;
 import ua.com.foxminded.model.Teacher;
 import ua.com.foxminded.service.impl.SubjectServiceImpl;
 import ua.com.foxminded.service.impl.TeacherServiceImpl;
+import java.util.Optional;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -31,13 +32,12 @@ public class TeacherControllerTest {
 
     @MockBean
     private TeacherServiceImpl teacherService;
-
     @MockBean
     private SubjectServiceImpl subjectService;
 
-    private int testId;
     private Teacher testTeacher = new Teacher();
     private Subject testSubject = new Subject();
+    private int testId;
 
     @Before
     public void setData(){
@@ -74,7 +74,7 @@ public class TeacherControllerTest {
     @Test
     @WithMockUser(value = "user", roles = {"ADMIN"})
     public void givenTeacherEditRequest_shouldReturnSingleTeacherView() throws Exception {
-        Mockito.when(teacherService.getTeacher(testId)).thenReturn(testTeacher);
+        Mockito.when(teacherService.getTeacher(testId)).thenReturn(Optional.of(testTeacher));
         mvc.perform(get("/teachers/edit/" + testId).with(csrf()))
             .andExpect(status().isOk());
     }
@@ -89,7 +89,7 @@ public class TeacherControllerTest {
     @Test
     @WithMockUser(value = "user", roles = {"ADMIN"})
     public void givenUpdateTeacherRequest_shouldReturnTeachersView() throws Exception {
-        Mockito.when(teacherService.updateTeacher(testTeacher)).thenReturn(testTeacher);
+        Mockito.when(teacherService.updateTeacher(testTeacher)).thenReturn(Optional.of(testTeacher));
         mvc.perform(post("/teachers/update/" + testId).with(csrf()))
             .andExpect(status().is3xxRedirection());
     }

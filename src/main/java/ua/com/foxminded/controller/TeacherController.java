@@ -60,7 +60,7 @@ public class TeacherController {
     @GetMapping("/teachers/edit/{id}")
     @PreAuthorize("hasAnyAuthority('ADMIN', 'TEACHER')")
     public String editTeacher(@PathVariable("id") Integer id, Model model){
-        Teacher teacher = teacherService.getTeacher(id);
+        Teacher teacher = teacherService.getTeacher(id).get();
         List<Subject> listSubject = subjectService.getSubjects();
         model.addAttribute("teacher", teacher);
         model.addAttribute("listSubject", listSubject);

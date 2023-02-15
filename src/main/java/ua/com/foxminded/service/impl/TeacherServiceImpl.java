@@ -18,16 +18,16 @@ public class TeacherServiceImpl implements TeacherService {
         return teacherDao.getTeachers();
     };
 
-    public Teacher getTeacher(int teacherId){
-        return teacherDao.getTeacher(teacherId).get();
+    public Optional<Teacher> getTeacher(int teacherId){
+        return teacherDao.getTeacher(teacherId);
     }
 
     public Teacher addTeacher(Teacher teacher){
         return teacherDao.addTeacher(teacher);
     }
 
-    public Teacher updateTeacher(Teacher teacher){
-        return teacherDao.updateTeacher(teacher).get();
+    public Optional<Teacher> updateTeacher(Teacher teacher){
+        return teacherDao.updateTeacher(teacher);
     }
 
     public void deleteTeacher(int teacherId){

@@ -13,6 +13,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import ua.com.foxminded.model.Group;
 import ua.com.foxminded.service.impl.GroupServiceImpl;
+import java.util.Optional;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -57,7 +58,7 @@ public class GroupControllerTest {
     @Test
     @WithMockUser(username = "user", roles = "{'ADMIN'}")
     public void givenSingleGroupRequest_shouldReturnSingleGroupView() throws Exception {
-        Mockito.when(groupService.getGroup(testId)).thenReturn(testGroup);
+        Mockito.when(groupService.getGroup(testId)).thenReturn(Optional.of(testGroup));
         mvc.perform(get("/groups/edit/" + testId).with(csrf()))
             .andExpect(status().isOk());
     }
@@ -65,7 +66,7 @@ public class GroupControllerTest {
     @Test
     @WithMockUser(username = "user", roles = "{'ADMIN'}")
     public void givenUpdateGroup_shouldReturnGroupsView() throws Exception {
-        Mockito.when(groupService.updateGroup(testGroup)).thenReturn(testGroup);
+        Mockito.when(groupService.updateGroup(testGroup)).thenReturn(Optional.of(testGroup));
         mvc.perform(post("/groups/update/" + testId).with(csrf()))
             .andExpect(status().is3xxRedirection());
     }

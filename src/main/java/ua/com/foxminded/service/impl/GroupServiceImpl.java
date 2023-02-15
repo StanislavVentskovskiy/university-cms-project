@@ -6,6 +6,7 @@ import ua.com.foxminded.dao.impl.GroupDaoImpl;
 import ua.com.foxminded.model.Group;
 import ua.com.foxminded.service.GroupService;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class GroupServiceImpl implements GroupService {
@@ -21,15 +22,15 @@ public class GroupServiceImpl implements GroupService {
         return groupDaoImpl.addGroup(group);
     }
 
-    public Group updateGroup(Group group){
-        return groupDaoImpl.updateGroup(group).get();
+    public Optional<Group> updateGroup(Group group){
+        return groupDaoImpl.updateGroup(group);
     }
 
     public void deleteGroup(int groupId){
         groupDaoImpl.deleteGroup(groupId);
     }
 
-    public Group getGroup(int groupId){
-        return groupDaoImpl.getGroup(groupId).get();
+    public Optional<Group> getGroup(int groupId){
+        return groupDaoImpl.getGroup(groupId);
     }
 }

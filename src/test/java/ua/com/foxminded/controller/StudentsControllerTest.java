@@ -14,6 +14,9 @@ import org.springframework.test.web.servlet.MockMvc;
 import ua.com.foxminded.model.Student;
 import ua.com.foxminded.service.impl.GroupServiceImpl;
 import ua.com.foxminded.service.impl.StudentServiceImpl;
+
+import java.util.Optional;
+
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -65,7 +68,7 @@ public class StudentsControllerTest {
     @Test
     @WithMockUser(value = "user", roles = {"ADMIN"})
     public void givenSingleStudentRequest_shouldReturnStudentsView() throws Exception {
-        Mockito.when(studentService.getStudent(1)).thenReturn(testStudent);
+        Mockito.when(studentService.getStudent(1)).thenReturn(Optional.of(testStudent));
         mvc.perform(get("/students/edit/" + testId).with(csrf()))
             .andExpect(status().isOk());
     }
@@ -80,7 +83,7 @@ public class StudentsControllerTest {
     @Test
     @WithMockUser(value = "user", roles = {"ADMIN"})
     public void givenUpdateStudent_shouldReturnStudentView() throws Exception {
-        Mockito.when(studentService.updateStudent(testStudent)).thenReturn(testStudent);
+        Mockito.when(studentService.updateStudent(testStudent)).thenReturn(Optional.of(testStudent));
         mvc.perform(post("/students/update/" + testId).with(csrf()))
             .andExpect(status().is3xxRedirection());
     }

@@ -8,11 +8,11 @@ public interface TeacherService {
 
     List<Teacher> getTeachers();
 
-    Teacher getTeacher(int teacherId);
+    Optional<Teacher> getTeacher(int teacherId);
 
     Teacher addTeacher(Teacher teacher);
 
-    Teacher updateTeacher(Teacher teacher);
+    Optional<Teacher> updateTeacher(Teacher teacher);
 
     void deleteTeacher(int teacherId);
 }
