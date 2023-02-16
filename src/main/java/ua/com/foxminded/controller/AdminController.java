@@ -46,4 +46,21 @@ public class AdminController {
         userService.saveUser(user);
         return "redirect:/admin-panel";
     }
+
+    @GetMapping("/admin-panel/new-role")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
+    public String newRoleForm(Model model){
+        Role role = new Role();
+        model.addAttribute("role", role);
+
+        return "role-create";
+    }
+
+    @PostMapping("/admin-panel/save-role")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
+    public String saveRole(Role role){
+        roleService.addRole(role);
+
+        return "redirect:/admin-panel";
+    }
 }

@@ -26,17 +26,22 @@
   <div class = "mx-auto">
     <h1>Subjects List</h1>
   </div>
+  <a class ="nav-link" th:href="@{/subjects/new}">Create new Subject</a>
   <table class = "table table-striped table-bordered">
     <thead class = "table-dark">
     <tr>
       <th>ID</th>
       <th>Subject Name</th>
+      <th>Delete</th>
+      <th>Edit</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each = "subject: ${subjects}">
       <td th:text = "${subject.id}"></td>
       <td th:text = "${subject.name}"></td>
+      <td><a th:href="@{'/subjects/delete/' + ${subject.id}}">Delete</a></td>
+      <td><a th:href="@{'/subjects/edit/' + ${subject.id}}">Edit</a></td>
     </tr>
     </tbody>
   </table>

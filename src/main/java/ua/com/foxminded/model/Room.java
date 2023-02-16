@@ -12,7 +12,7 @@ public class Room {
     private int id;
 
     @Column(name = "floor")
-    private Integer floor;
+    private int floor;
 
     @Column(name = "number")
     private int number;
@@ -55,7 +55,7 @@ public class Room {
         if (!(o instanceof Room))
             return false;
         Room other = (Room) o;
-        boolean valueEquals = (this.floor == null && other.floor == null)
+        boolean valueEquals = (Integer.valueOf(this.floor) == null && Integer.valueOf(other.floor) == null)
                 || (this.number == other.number);
 
         return valueEquals;
@@ -64,7 +64,7 @@ public class Room {
     @Override
     public final int hashCode(){
         int hashCode = 17;
-        hashCode = 31 * hashCode + floor.hashCode();
+        hashCode = 31 * hashCode + Integer.valueOf(floor).hashCode();
 
         return hashCode;
     }

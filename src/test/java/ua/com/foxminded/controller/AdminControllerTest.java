@@ -68,5 +68,20 @@ public class AdminControllerTest {
         Mockito.when(userService.getUser(1)).thenReturn(new UserEntity());
         mvc.perform(get("/admin-panel/edit/" + testId).with(csrf()))
             .andExpect(status().isOk());
-        }
+    }
+
+    @Test
+    @WithMockUser(value = "user")
+    public void givenRoleFormGetRequest_shouldReturn200() throws Exception {
+        mvc.perform(get("/admin-panel/new-role").contentType(MediaType.APPLICATION_JSON)
+            .with(csrf()))
+            .andExpect(status().isOk());
+    }
+
+    @Test
+    @WithMockUser(value = "user")
+    public void givenRolePostRequest_shouldRedirectToAdminPanel() throws Exception {
+        mvc.perform(post("/admin-panel/save-role").with(csrf()))
+            .andExpect(status().is3xxRedirection());
+    }
 }
