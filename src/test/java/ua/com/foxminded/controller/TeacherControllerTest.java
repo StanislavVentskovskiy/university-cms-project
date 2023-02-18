@@ -17,19 +17,15 @@ import ua.com.foxminded.service.impl.SubjectServiceImpl;
 import ua.com.foxminded.service.impl.TeacherServiceImpl;
 import java.util.Optional;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(TeacherController.class)
 public class TeacherControllerTest {
-
     @Autowired
     private MockMvc mvc;
-
     @MockBean
     private TeacherServiceImpl teacherService;
     @MockBean
@@ -49,48 +45,50 @@ public class TeacherControllerTest {
 
     @Test
     @WithMockUser(value = "user")
-    public void givenTeachersPage_shouldReturnTeachersView() throws Exception{
+    public void givenTeachersPage_shouldReturnStatus200() throws Exception{
         mvc.perform(get("/teachers"))
-            .andDo(print())
             .andExpect(status().isOk());
     }
 
     @Test
     @WithMockUser(value = "user", roles = {"ADMIN"})
-    public void givenCreateNewTeacherForm_shouldReturn200() throws Exception {
+    public void givenCreateNewTeacherForm_shouldReturnStatus200() throws Exception {
         mvc.perform(get("/teachers/new").contentType(MediaType.APPLICATION_JSON)
-            .with(csrf())
-            .with(user("user")))
+            .with(csrf()))
             .andExpect(status().isOk());
     }
 
     @Test
     @WithMockUser(value = "user", roles = {"ADMIN"})
-    public void givenSaveNewTeacher_shouldRedirectToTeacherView() throws Exception {
-        mvc.perform(post("/teachers/save").with(csrf()))
-            .andExpect(status().is3xxRedirection());
+    public void givenSaveNewTeacher_shouldReturnRedirect() throws Exception {
+        mvc.perform(post("/teachers/save")
+                .with(csrf()))
+                .andExpect(status().is3xxRedirection());
     }
 
     @Test
     @WithMockUser(value = "user", roles = {"ADMIN"})
-    public void givenTeacherEditRequest_shouldReturnSingleTeacherView() throws Exception {
+    public void givenTeacherEditRequest_shouldReturnStatus200() throws Exception {
         Mockito.when(teacherService.getTeacher(testId)).thenReturn(Optional.of(testTeacher));
-        mvc.perform(get("/teachers/edit/" + testId).with(csrf()))
-            .andExpect(status().isOk());
+        mvc.perform(get("/teachers/edit/" + testId)
+                .with(csrf()))
+                .andExpect(status().isOk());
     }
 
     @Test
     @WithMockUser(value = "user", roles = {"ADMIN"})
-    public void givenDeleteTeacher_shouldReturnTeachersView() throws Exception {
-        mvc.perform(get("/teachers/delete/" + testId).with(csrf()))
-            .andExpect(status().is3xxRedirection());
+    public void givenDeleteTeacher_shouldReturnRedirect() throws Exception {
+        mvc.perform(get("/teachers/delete/" + testId)
+                .with(csrf()))
+                .andExpect(status().is3xxRedirection());
     }
 
     @Test
     @WithMockUser(value = "user", roles = {"ADMIN"})
-    public void givenUpdateTeacherRequest_shouldReturnTeachersView() throws Exception {
+    public void givenUpdateTeacherRequest_shouldReturnRedirect() throws Exception {
         Mockito.when(teacherService.updateTeacher(testTeacher)).thenReturn(Optional.of(testTeacher));
-        mvc.perform(post("/teachers/update/" + testId).with(csrf()))
-            .andExpect(status().is3xxRedirection());
+        mvc.perform(post("/teachers/update/" + testId)
+                .with(csrf()))
+                .andExpect(status().is3xxRedirection());
     }
 }

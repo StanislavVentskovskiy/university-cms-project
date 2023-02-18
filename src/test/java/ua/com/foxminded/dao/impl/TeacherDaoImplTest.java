@@ -16,7 +16,6 @@ import static org.mockito.Mockito.verify;
 @Sql(scripts = {"classpath:test-schema.sql"})
 @SpringBootTest
 public class TeacherDaoImplTest {
-
     @Mock
     TeacherDaoImpl teacherDaoImpl;
 

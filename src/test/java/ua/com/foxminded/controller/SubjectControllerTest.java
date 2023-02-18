@@ -22,10 +22,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @WebMvcTest(SubjectController.class)
 public class SubjectControllerTest {
-
     @Autowired
     private MockMvc mvc;
-
     @MockBean
     private SubjectServiceImpl subjectService;
 
@@ -34,7 +32,7 @@ public class SubjectControllerTest {
 
     @Test
     @WithMockUser(value = "user")
-    public void givenSubjectsPage_shouldReturnSubjectsView() throws Exception{
+    public void givenSubjectsPage_shouldReturnStatus200() throws Exception{
         mvc.perform(get("/subjects"))
             .andDo(print())
             .andExpect(status().isOk());
@@ -42,30 +40,33 @@ public class SubjectControllerTest {
 
     @Test
     @WithMockUser(username = "user", roles = "{'ADMIN'}")
-    public void givenDeleteSubject_shouldReturnSubjectView() throws Exception {
-        mvc.perform(get("/subjects/delete/" + testId).with(csrf()))
-            .andExpect(status().is3xxRedirection());
+    public void givenDeleteSubject_shouldReturnRedirect() throws Exception {
+        mvc.perform(get("/subjects/delete/" + testId)
+                .with(csrf()))
+                .andExpect(status().is3xxRedirection());
     }
 
     @Test
     @WithMockUser(username = "user", roles = "{'ADMIN'}")
-    public void givenSingleSubjectRequest_shouldReturnSingleSubjectView() throws Exception {
+    public void givenSingleSubjectRequest_shouldReturnStatus200() throws Exception {
         Mockito.when(subjectService.getSubject(testId)).thenReturn(Optional.of(testSubject));
-        mvc.perform(get("/subjects/edit/" + testId).with(csrf()))
-            .andExpect(status().isOk());
+        mvc.perform(get("/subjects/edit/" + testId)
+                .with(csrf()))
+                .andExpect(status().isOk());
     }
 
     @Test
     @WithMockUser(username = "user", roles = "{'ADMIN'}")
-    public void givenUpdateSubject_shouldReturnSubjectsView() throws Exception {
+    public void givenUpdateSubject_shouldReturnRedirect() throws Exception {
         Mockito.when(subjectService.updateSubject(testSubject)).thenReturn(Optional.of(testSubject));
-        mvc.perform(post("/subjects/update/" + testId).with(csrf()))
-            .andExpect(status().is3xxRedirection());
+        mvc.perform(post("/subjects/update/" + testId)
+                .with(csrf()))
+                .andExpect(status().is3xxRedirection());
     }
 
     @Test
     @WithMockUser(username = "user", roles = "{'ADMIN'}")
-    public void givenNewGroupForm_shouldReturn200() throws Exception {
+    public void givenNewGroupForm_shouldReturnStatus200() throws Exception {
         mvc.perform(get("/subjects/new").contentType(MediaType.APPLICATION_JSON)
             .with(csrf())).andExpect(status().isOk());
     }
@@ -73,7 +74,7 @@ public class SubjectControllerTest {
 
     @Test
     @WithMockUser(username = "user", roles = "{'ADMIN'}")
-    public void givenSaveNewGroup_shouldRedirectToGroupView() throws Exception {
+    public void givenSaveNewGroup_shouldReturnRedirect() throws Exception {
         mvc.perform(post("/subjects/save").with(csrf()))
             .andExpect(status().is3xxRedirection());
     }

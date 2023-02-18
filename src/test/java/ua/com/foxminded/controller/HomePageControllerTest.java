@@ -9,22 +9,19 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
 public class HomePageControllerTest {
-
     @Autowired
     private MockMvc mvc;
 
     @Test
     @WithMockUser(value = "user")
-    public void givenHomePage_shouldReturnViewName() throws Exception{
+    public void givenHomePage_shouldReturnStatus200() throws Exception{
         mvc.perform(get("/index"))
-            .andDo(print())
             .andExpect(status().isOk());
     }
 }

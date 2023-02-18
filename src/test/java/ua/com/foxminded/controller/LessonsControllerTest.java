@@ -14,34 +14,25 @@ import org.springframework.test.web.servlet.MockMvc;
 import ua.com.foxminded.model.*;
 import ua.com.foxminded.service.impl.*;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(LessonController.class)
 public class LessonsControllerTest {
-
     @Autowired
     private MockMvc mvc;
-
     @MockBean
     private LessonServiceImpl lessonService;
-
     @MockBean
     private RoomServiceImpl roomService;
-
     @MockBean
     private RoleServiceImpl roleService;
-
     @MockBean
     private GroupServiceImpl groupService;
-
     @MockBean
     private SubjectServiceImpl subjectService;
-
     @MockBean
     private TeacherServiceImpl teacherService;
 
@@ -67,48 +58,50 @@ public class LessonsControllerTest {
 
     @Test
     @WithMockUser(value = "user")
-    public void givenLessonsPage_shouldReturnLessonsView() throws Exception {
+    public void givenLessonsPage_shouldReturnStatus200() throws Exception {
         mvc.perform(get("/lessons"))
-            .andDo(print())
             .andExpect(status().isOk());
     }
 
     @Test
     @WithMockUser(value = "user", roles = {"ADMIN"})
-    public void givenCreateNewLessonForm_shouldReturn200() throws Exception {
+    public void givenCreateNewLessonForm_shouldReturnStatus200() throws Exception {
         mvc.perform(get("/lessons/new").contentType(MediaType.APPLICATION_JSON)
-                .with(csrf())
-                .with(user("user")))
+                .with(csrf()))
                 .andExpect(status().isOk());
     }
 
     @Test
     @WithMockUser(value = "user", roles = {"ADMIN"})
-    public void givenSaveNewLesson_shouldRedirectToLessonView() throws Exception {
-        mvc.perform(post("/lessons/save").with(csrf()))
-            .andExpect(status().is3xxRedirection());
+    public void givenSaveNewLesson_shouldReturnRedirect() throws Exception {
+        mvc.perform(post("/lessons/save")
+                .with(csrf()))
+                .andExpect(status().is3xxRedirection());
     }
 
     @Test
     @WithMockUser(value = "user", roles = {"ADMIN"})
-    public void givenSingleLessonRequest_shouldReturnSingleLessonView() throws Exception {
+    public void givenSingleLessonRequest_shouldReturnStatus200() throws Exception {
         Mockito.when(lessonService.getLesson(1)).thenReturn(testLesson);
-        mvc.perform(get("/lessons/edit/" + testId).with(csrf()))
-            .andExpect(status().isOk());
+        mvc.perform(get("/lessons/edit/" + testId)
+                .with(csrf()))
+                .andExpect(status().isOk());
     }
 
     @Test
     @WithMockUser(value = "user", roles = {"ADMIN"})
-    public void givenDeleteLesson_shouldReturnLessonView() throws Exception {
-        mvc.perform(get("/lessons/delete/" + testId).with(csrf()))
-            .andExpect(status().is3xxRedirection());
+    public void givenDeleteLesson_shouldReturnRedirect() throws Exception {
+        mvc.perform(get("/lessons/delete/" + testId)
+                .with(csrf()))
+                .andExpect(status().is3xxRedirection());
     }
 
     @Test
     @WithMockUser(value = "user", roles = {"ADMIN"})
-    public void givenUpdateLesson_shouldReturnLessonView() throws Exception {
+    public void givenUpdateLesson_shouldReturnRedirect() throws Exception {
         Mockito.when(lessonService.updateLesson(testLesson)).thenReturn(testLesson);
-        mvc.perform(post("/lessons/update/" + testId).with(csrf()))
-            .andExpect(status().is3xxRedirection());
+        mvc.perform(post("/lessons/update/" + testId)
+                .with(csrf()))
+                .andExpect(status().is3xxRedirection());
     }
 }

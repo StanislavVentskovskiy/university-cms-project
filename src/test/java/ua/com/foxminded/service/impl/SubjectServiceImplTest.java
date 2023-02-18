@@ -14,10 +14,8 @@ import static org.mockito.Mockito.verify;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class SubjectServiceImplTest {
-
     @Autowired
     SubjectServiceImpl subjectService;
-
     @MockBean
     SubjectDaoImpl subjectDao;
 

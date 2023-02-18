@@ -14,10 +14,8 @@ import static org.mockito.Mockito.verify;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class LessonServiceImplTest {
-
     @Autowired
     LessonServiceImpl lessonService;
-
     @MockBean
     LessonDaoImpl lessonDao;
 

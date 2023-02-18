@@ -17,16 +17,13 @@ import java.util.Optional;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(GroupController.class)
 public class GroupControllerTest {
-
     @Autowired
     private MockMvc mvc;
-
     @MockBean
     private GroupServiceImpl groupService;
 
@@ -42,22 +39,21 @@ public class GroupControllerTest {
 
     @Test
     @WithMockUser(username = "user", roles = "{'ADMIN'}")
-    public void givenGroupsPage_shouldReturnGroupsView() throws Exception{
+    public void givenGroupsPage_shouldReturnStatus200() throws Exception{
           mvc.perform(get("/groups"))
-            .andDo(print())
             .andExpect(status().isOk());
     }
 
     @Test
     @WithMockUser(username = "user", roles = "{'ADMIN'}")
-    public void givenDeleteGroup_shouldReturnGroupView() throws Exception {
+    public void givenDeleteGroup_shouldReturnRedirect() throws Exception {
         mvc.perform(get("/groups/delete/" + testId).with(csrf()))
             .andExpect(status().is3xxRedirection());
     }
 
     @Test
     @WithMockUser(username = "user", roles = "{'ADMIN'}")
-    public void givenSingleGroupRequest_shouldReturnSingleGroupView() throws Exception {
+    public void givenSingleGroupRequest_shouldReturnStatus200() throws Exception {
         Mockito.when(groupService.getGroup(testId)).thenReturn(Optional.of(testGroup));
         mvc.perform(get("/groups/edit/" + testId).with(csrf()))
             .andExpect(status().isOk());
@@ -65,7 +61,7 @@ public class GroupControllerTest {
 
     @Test
     @WithMockUser(username = "user", roles = "{'ADMIN'}")
-    public void givenUpdateGroup_shouldReturnGroupsView() throws Exception {
+    public void givenUpdateGroup_shouldReturnRedirect() throws Exception {
         Mockito.when(groupService.updateGroup(testGroup)).thenReturn(Optional.of(testGroup));
         mvc.perform(post("/groups/update/" + testId).with(csrf()))
             .andExpect(status().is3xxRedirection());
@@ -73,16 +69,18 @@ public class GroupControllerTest {
 
     @Test
     @WithMockUser(username = "user", roles = "{'ADMIN'}")
-    public void givenNewGroupForm_shouldReturn200() throws Exception {
+    public void givenNewGroupForm_shouldReturnStatus200() throws Exception {
         mvc.perform(get("/groups/new").contentType(MediaType.APPLICATION_JSON)
-            .with(csrf())).andExpect(status().isOk());
+            .with(csrf()))
+            .andExpect(status().isOk());
     }
 
 
     @Test
     @WithMockUser(username = "user", roles = "{'ADMIN'}")
-    public void givenSaveNewGroup_shouldRedirectToGroupView() throws Exception {
-        mvc.perform(post("/groups/save").with(csrf()))
-            .andExpect(status().is3xxRedirection());
+    public void givenSaveNewGroup_shouldReturnRedirect() throws Exception {
+        mvc.perform(post("/groups/save")
+                .with(csrf()))
+                .andExpect(status().is3xxRedirection());
     }
 }

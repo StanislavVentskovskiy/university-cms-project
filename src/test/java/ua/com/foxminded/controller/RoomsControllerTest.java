@@ -17,16 +17,13 @@ import java.util.Optional;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(RoomController.class)
 public class RoomsControllerTest {
-
     @Autowired
     private MockMvc mvc;
-
     @MockBean
     private RoomServiceImpl roomService;
 
@@ -40,22 +37,21 @@ public class RoomsControllerTest {
 
     @Test
     @WithMockUser(value = "user")
-    public void givenRoomsPage_shouldReturnRoomsView() throws Exception{
+    public void givenRoomsPage_shouldReturnStatus200() throws Exception{
         mvc.perform(get("/rooms"))
-            .andDo(print())
             .andExpect(status().isOk());
     }
 
     @Test
     @WithMockUser(username = "user", roles = "{'ADMIN'}")
-    public void givenDeleteRoom_shouldReturnRoomView() throws Exception {
+    public void givenDeleteRoom_shouldReturnRedirect() throws Exception {
         mvc.perform(get("/rooms/delete/" + testId).with(csrf()))
             .andExpect(status().is3xxRedirection());
     }
 
     @Test
     @WithMockUser(username = "user", roles = "{'ADMIN'}")
-    public void givenSingleRoomRequest_shouldReturnSingleRoomView() throws Exception {
+    public void givenSingleRoomRequest_shouldReturnStatus200() throws Exception {
         Mockito.when(roomService.getRoom(testId)).thenReturn(Optional.of(testRoom));
         mvc.perform(get("/rooms/edit/" + testId).with(csrf()))
             .andExpect(status().isOk());
@@ -63,7 +59,7 @@ public class RoomsControllerTest {
 
     @Test
     @WithMockUser(username = "user", roles = "{'ADMIN'}")
-    public void givenUpdateRoom_shouldReturnRoomsView() throws Exception {
+    public void givenUpdateRoom_shouldReturnRedirect() throws Exception {
         Mockito.when(roomService.updateRoom(testRoom)).thenReturn(Optional.of(testRoom));
         mvc.perform(post("/rooms/update/" + testId).with(csrf()))
             .andExpect(status().is3xxRedirection());
@@ -71,16 +67,18 @@ public class RoomsControllerTest {
 
     @Test
     @WithMockUser(username = "user", roles = "{'ADMIN'}")
-    public void givenNewRoomForm_shouldReturn200() throws Exception {
+    public void givenNewRoomForm_shouldReturnStatus200() throws Exception {
         mvc.perform(get("/rooms/new").contentType(MediaType.APPLICATION_JSON)
-            .with(csrf())).andExpect(status().isOk());
+            .with(csrf()))
+            .andExpect(status().isOk());
     }
 
 
     @Test
     @WithMockUser(username = "user", roles = "{'ADMIN'}")
-    public void givenSaveNewRoom_shouldRedirectToRoomView() throws Exception {
-        mvc.perform(post("/rooms/save").with(csrf()))
-            .andExpect(status().is3xxRedirection());
+    public void givenSaveNewRoom_shouldReturnRedirect() throws Exception {
+        mvc.perform(post("/rooms/save")
+                .with(csrf()))
+                .andExpect(status().is3xxRedirection());
     }
 }

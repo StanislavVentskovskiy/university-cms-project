@@ -16,7 +16,6 @@ import static org.junit.Assert.assertEquals;
 @Sql(scripts = {"classpath:test-schema.sql"})
 @SpringBootTest
 public class StudentDaoImplTest {
-
     @Mock
     StudentDaoImpl studentDao;
 

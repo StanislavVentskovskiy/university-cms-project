@@ -17,7 +17,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @WebMvcTest(AdminController.class)
 public class AuthControllerTest {
-
     @Autowired
     private MockMvc mvc;
     @MockBean
@@ -27,21 +26,21 @@ public class AuthControllerTest {
 
     @WithMockUser(value = "admin", roles = {"ADMIN"})
     @Test
-    public void givenAuthRequestOnPrivateServiceAdminRole_shouldReturn200() throws Exception {
+    public void givenAuthRequestOnPrivateServiceAdminRole_shouldReturnStatus200() throws Exception {
         mvc.perform(get("/login").contentType(MediaType.APPLICATION_JSON))
             .andExpect(status().isOk());
     }
 
     @WithMockUser(value = "user", roles = {"USER"})
     @Test
-    public void givenAuthRequestOnPrivateServiceUserRole_shouldReturn200() throws Exception {
+    public void givenAuthRequestOnPrivateServiceUserRole_shouldReturnStatus200() throws Exception {
         mvc.perform(get("/login").contentType(MediaType.APPLICATION_JSON))
             .andExpect(status().isOk());
     }
 
     @WithMockUser(value = "teacher", roles = {"TEACHER"})
     @Test
-    public void givenAuthRequestOnPrivateServiceTeacherRole_shouldReturn200() throws Exception {
+    public void givenAuthRequestOnPrivateServiceTeacherRole_shouldReturnStatus200() throws Exception {
         mvc.perform(get("/login").contentType(MediaType.APPLICATION_JSON))
             .andExpect(status().isOk());
     }

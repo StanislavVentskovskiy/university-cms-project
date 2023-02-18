@@ -15,10 +15,8 @@ import static org.mockito.Mockito.verify;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class GroupServiceImplTest {
-
     @Autowired
     private GroupServiceImpl groupService;
-
     @MockBean
     private GroupDaoImpl groupDao;
 
